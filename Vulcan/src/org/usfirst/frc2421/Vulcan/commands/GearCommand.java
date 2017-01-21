@@ -12,6 +12,7 @@
 package org.usfirst.frc2421.Vulcan.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2421.Vulcan.Robot;
+import org.usfirst.frc2421.Vulcan.subsystems.Gear;
 
 /**
  *
@@ -41,6 +42,9 @@ public class GearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Gear.moveStart();
+    	Gear.moveEnd(); //if nothing happens, add a timer
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
