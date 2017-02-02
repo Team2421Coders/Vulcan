@@ -12,6 +12,7 @@
 package org.usfirst.frc2421.Vulcan.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2421.Vulcan.Robot;
+import org.usfirst.frc2421.Vulcan.subsystems.Gear;
 
 /**
  *
@@ -41,6 +42,12 @@ public class GearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(Gear.getFlipperSpeed() == 0){
+    		Gear.setFlipperSpeed(1);
+    	}
+    	else {
+    		Gear.setFlipperSpeed(0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,6 +57,7 @@ public class GearCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Gear.setFlipperSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
