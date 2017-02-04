@@ -42,13 +42,7 @@ public class GearCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-    	if(Gear.getFlipperSpeed() == 0){
-    		Gear.setFlipperSpeed(1);
-    	}
-    	else {
-    		Gear.setFlipperSpeed(0);
-    	}
+  		Gear.setFlipperSpeed(1);
 
     }
 
@@ -65,5 +59,6 @@ public class GearCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Gear.setFlipperSpeed(0);
     }
 }

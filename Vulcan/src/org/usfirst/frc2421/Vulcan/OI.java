@@ -67,7 +67,7 @@ public class OI {
         buttonClimb = new JoystickButton(controlStick, 1);
         buttonClimb.whenPressed(new ClimbCommand());
         buttonGear = new JoystickButton(controlStick, 1);
-        buttonGear.whenPressed(new GearCommand());
+        buttonGear.whileHeld(new GearCommand());
         driveStick = new Joystick(0);
         
 

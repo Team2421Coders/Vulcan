@@ -67,10 +67,10 @@ public class RobotMap {
         driveDriveSystem.setSensitivity(0.5);
         driveDriveSystem.setMaxOutput(1.0);
 
-        gearGearServo = new Spark(0);
+        gearGearServo = new Spark(1);
         LiveWindow.addActuator("Gear", "GearServo", (Spark) gearGearServo);
         
-        climbClimb1 = new Spark(1);
+        climbClimb1 = new Spark(0);
         LiveWindow.addActuator("Climb", "Climb1", (Spark) climbClimb1);
         
         climbClimb2 = new Spark(2);
