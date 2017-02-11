@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2421.Vulcan.commands;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -48,21 +49,11 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(stick.getX() < -deadZone || stick.getX() > deadZone){
-    		xValue = stick.getX();
-    	}else{
-    		xValue = 0;
-    	}
-    	if(stick.getY() < -deadZone || stick.getY() > deadZone){
-    		yValue = -(stick.getY());
-    	}else{
-    		yValue = 0;
-    	}
-    	
-		SmartDashboard.putNumber("X Value:", xValue);
-    	SmartDashboard.putNumber("Y Value:", yValue);
-    	Drive.setLeft(yValue+xValue);
-    	Drive.setRight((yValue-xValue));
+    	Drive.leftJoystick();
+    	Drive.rightJoystick();
+    	Drive.buttons();
+    	Drive.setMotors();
+    	System.out.println("execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
