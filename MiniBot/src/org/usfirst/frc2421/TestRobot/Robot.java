@@ -102,6 +102,9 @@ public class Robot extends IterativeRobot {
 			while(!Thread.interrupted()) {
 				cvSink.grabFrame(source);
 				source.copyTo(output);
+				Imgproc.line(output, new Point(310,0), new Point(310,480), new Scalar(255,255,255),5);
+				Imgproc.line(output, new Point(320,0), new Point(320,480), new Scalar(255,255,255),5);
+				Imgproc.line(output, new Point(330,0), new Point(330,480), new Scalar(255,255,255),5);
 				for(int i = 0; i < vision.getNumberArray("x",def).length; i++)
 				{
 					Imgproc.circle(output, new Point(vision.getNumberArray("x", def)[i], vision.getNumberArray("y", def)[i]), 
@@ -138,6 +141,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		servo1.
 	}
 
 	public void teleopInit() {
