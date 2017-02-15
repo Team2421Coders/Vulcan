@@ -49,10 +49,8 @@ public class DriveCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Drive.leftJoystick();
-    	Drive.rightJoystick();
+    	Drive.joysticks();
     	Drive.buttons();
-    	Drive.setMotors();
     	System.out.println("execute");
     }
 
