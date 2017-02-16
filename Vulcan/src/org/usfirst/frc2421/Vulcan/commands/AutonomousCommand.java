@@ -87,6 +87,7 @@ public class AutonomousCommand extends Command {
     		double avgSize = (sizeArray[0] + sizeArray[1])/2;
     		double midpoint = (xArray[0] + xArray[1])/2;
     		double ds = (320-midpoint)*c*avgSize*d;
+
     		System.out.println(ds);
     		Drive.setLeft(speed+ds);
     		Drive.setRight(speed-ds);
