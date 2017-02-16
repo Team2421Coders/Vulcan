@@ -75,7 +75,11 @@ public class Robot extends IterativeRobot {
 		NetworkTable.setServerMode();
 		vision =  NetworkTable.getTable("VulcanVision");
 		
-
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(640, 480);
+		//CvSink cvSink = CameraServer.getInstance().getVideo();
+		
+		/*
 		new Thread(() -> {
 
 			//CameraServer.getInstance().addAxisCamera("10.24.21.11");
@@ -84,10 +88,10 @@ public class Robot extends IterativeRobot {
 
 
 			CvSink cvSink = CameraServer.getInstance().getVideo();
-			CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
+			//CvSource outputStream = CameraServer.getInstance().putVideo("Processed", 640, 480);
 
 			Mat source = new Mat();
-			Mat output = new Mat();
+			//Mat output = new Mat();
 			
 			double[] def = {-1.0};
 
@@ -105,7 +109,7 @@ public class Robot extends IterativeRobot {
 				
 				//System.out.println(table.getNumber("X", 0));
 			}
-		}).start();
+		}).start();*/
     }
 
     /**

@@ -60,13 +60,13 @@ public class AutonomousCommand extends Command {
     		Drive.setRight(speed);
         }
     	*/
-    		double c = 0.005;
-    		double d = .0005;
+    		double c = 0.0025;
+    		double d = .00075;
     		double avgSize = (Robot.vision.getNumberArray("size", Robot.def)[0]+Robot.vision.getNumberArray("size", Robot.def)[1])/2;
     		double midpoint = (Robot.vision.getNumberArray("x", Robot.def)[0]+Robot.vision.getNumberArray("x", Robot.def)[1])/2;
-    		double ds = (320-midpoint)*c*avgSize*d;
+    		double ds = (midpoint-320)*c*avgSize*d;
     		System.out.println(ds);
-    		Drive.setLeft(-(speed+ds));
+    		Drive.setLeft(speed+ds);
     		Drive.setRight(speed-ds);
     	}
     	catch(Exception ex){
