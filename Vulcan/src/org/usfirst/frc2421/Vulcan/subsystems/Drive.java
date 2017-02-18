@@ -51,7 +51,10 @@ public class Drive extends Subsystem {
     private static double deadzone = .4;
     private static boolean toggleClimb = false;
     private boolean toggleGear = false;
-    private static boolean toggleX;
+    private static boolean lastX;
+    private static boolean lastY;
+    private static boolean lastB;
+    private static boolean lastA;
     static int reversed = 1;
     static Command cc;
     static Command cc1;
@@ -97,39 +100,62 @@ public class Drive extends Subsystem {
     	System.out.println((yValue + xValue) * .5);
     	System.out.println((yValue - xValue) * .5);
     	Drive.setRight((yValue-xValue) * .5);
+    }  
+    //BUTTON HELD
+    public static void buttonAHeld(){
+    	
     }
-    public static void buttonA(){
-    	if(xbc.getAButton())
-    	{
-    		Command josh = new JoshCommand();
-    		josh.start();
-    	}
-    }
-    public static void buttonB(){
-    	if(xbc.getAButton())
-    	{
+    
+    public static void buttonBHeld(){
     		Climb.climbStart();
     		System.out.println("B");
-    	}
     }
-    public static void buttonX(){
-    	if(xbc.getXButton())
-    	{
+    
+    public static void buttonXHeld(){
+
     		Climb.climbDown();
-    	}
-    	
-    	
     }
-    public static void buttonY(){
-    	if(xbc.getYButton())
-    	{
+    
+    public static void buttonYHeld(){
     		Gear.gearStart();
-    	}
-    	else
-    	{
-    		Gear.gearEnd();
-    	}
     }
+    
+    //BUTTON PRESSED
+    public static void buttonAPressed(){
+    	Command josh = new JoshCommand();
+		josh.start();
+    }
+    
+    public static void buttonBPressed(){
+    	
+    }
+    
+    public static void buttonXPressed(){
+    	
+    }
+    
+    public static void buttonYPressed(){
+    	
+    }
+    
+    //BUTTON RELEASED
+    public static void buttonAReleased(){
+    	
+    }
+    
+    public static void buttonBReleased(){
+    	Climb.climbEnd();
+    }
+    
+    public static void buttonXReleased(){
+    	Climb.climbEnd();    	
+    }
+    
+    public static void buttonYReleased(){
+    	Gear.gearEnd();
+    }
+    
+    
     public static void triggerR(){
     	//reverse controls
     	if(xbc.getTriggerAxis(GenericHID.Hand.kRight)<.5)
@@ -146,13 +172,29 @@ public class Drive extends Subsystem {
     }
 
     public static void buttons(){
-    	Climb.climbEnd();
-    	Drive.buttonA();
-    	Drive.buttonB();
-    	Drive.buttonX();
-    	Drive.buttonY();
+    	
+    	if(xbc.getAButton()) Drive.buttonAHeld();
+    	if(xbc.getBButton()) Drive.buttonBHeld();
+    	if(xbc.getXButton()) Drive.buttonXHeld();
+    	if(xbc.getYButton()) Drive.buttonYHeld();
+    	
+    	if(xbc.getAButton()!=lastA&&xbc.getAButton()) Drive.buttonAPressed();
+    	if(xbc.getBButton()!=lastB&&xbc.getBButton()) Drive.buttonBPressed();
+    	if(xbc.getXButton()!=lastX&&xbc.getXButton()) Drive.buttonXPressed();
+    	if(xbc.getYButton()!=lastY&&xbc.getYButton()) Drive.buttonYPressed();
+    	
+    	if(xbc.getAButton()!=lastA&&!xbc.getAButton()) Drive.buttonAReleased();
+    	if(xbc.getBButton()!=lastB&&!xbc.getBButton()) Drive.buttonBReleased();
+    	if(xbc.getXButton()!=lastX&&!xbc.getXButton()) Drive.buttonXReleased();
+    	if(xbc.getYButton()!=lastY&&!xbc.getYButton()) Drive.buttonYReleased();
+    	
     	Drive.triggerL();
     	Drive.triggerR();
+    	
+    	lastA = xbc.getAButton();
+    	lastB = xbc.getBButton();
+    	lastX = xbc.getXButton();
+    	lastY = xbc.getYButton();
     }
 }
 
