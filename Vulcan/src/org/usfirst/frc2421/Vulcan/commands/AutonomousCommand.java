@@ -61,7 +61,7 @@ public class AutonomousCommand extends Command {
         }
     	*/
     		double c = 0.0025;
-    		double d = .00075;
+    		double d = 0.00075;
     		double avgSize = (Robot.vision.getNumberArray("size", Robot.def)[0]+Robot.vision.getNumberArray("size", Robot.def)[1])/2;
     		double midpoint = (Robot.vision.getNumberArray("x", Robot.def)[0]+Robot.vision.getNumberArray("x", Robot.def)[1])/2;
     		double ds = (midpoint-320)*c*avgSize*d;
