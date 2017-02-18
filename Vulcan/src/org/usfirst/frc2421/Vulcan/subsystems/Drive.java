@@ -55,6 +55,10 @@ public class Drive extends Subsystem {
     private static boolean lastY;
     private static boolean lastB;
     private static boolean lastA;
+    private static boolean lastTriggerR;
+    private static boolean lastTriggerL;
+    private static boolean lastBumperR;
+    private static boolean lastBumperL;
     static int reversed = 1;
     static Command cc;
     static Command cc1;
@@ -156,18 +160,29 @@ public class Drive extends Subsystem {
     }
     
     
-    public static void triggerR(){
-    	//reverse controls
-    	if(xbc.getTriggerAxis(GenericHID.Hand.kRight)<.5)
-    	reversed = -reversed;
-    }
-    public static void triggerL(){
+    public static void triggerRPressed(){
     	
     }
-    public static void bumperR(){
+    public static void triggerLPressed(){
     	
     }
-    public static void bumperL(){
+    public static void bumperRPressed(){
+    	
+    }
+    public static void bumperLPressed(){
+    	
+    }
+    
+public static void triggerRReleased(){
+    	
+    }
+    public static void triggerLReleased(){
+    	
+    }
+    public static void bumperRReleased(){
+    	
+    }
+    public static void bumperLReleased(){
     	
     }
 
@@ -182,19 +197,28 @@ public class Drive extends Subsystem {
     	if(xbc.getBButton()!=lastB&&xbc.getBButton()) Drive.buttonBPressed();
     	if(xbc.getXButton()!=lastX&&xbc.getXButton()) Drive.buttonXPressed();
     	if(xbc.getYButton()!=lastY&&xbc.getYButton()) Drive.buttonYPressed();
+    	if(xbc.getBumper(GenericHID.Hand.kRight)!=lastBumperR&&xbc.getBumper(GenericHID.Hand.kRight)) Drive.bumperRPressed();
+    	if(xbc.getBumper(GenericHID.Hand.kLeft)!=lastBumperL&&xbc.getBumper(GenericHID.Hand.kLeft)) Drive.bumperLPressed();
+    	if((xbc.getTriggerAxis(GenericHID.Hand.kRight)<.7)!=lastTriggerR&&(xbc.getTriggerAxis(GenericHID.Hand.kRight)<7)) Drive.triggerRPressed();
+    	if((xbc.getTriggerAxis(GenericHID.Hand.kLeft)<.7)!=lastTriggerL&&(xbc.getTriggerAxis(GenericHID.Hand.kLeft)<7)) Drive.triggerLPressed();
     	
     	if(xbc.getAButton()!=lastA&&!xbc.getAButton()) Drive.buttonAReleased();
     	if(xbc.getBButton()!=lastB&&!xbc.getBButton()) Drive.buttonBReleased();
     	if(xbc.getXButton()!=lastX&&!xbc.getXButton()) Drive.buttonXReleased();
     	if(xbc.getYButton()!=lastY&&!xbc.getYButton()) Drive.buttonYReleased();
-    	
-    	Drive.triggerL();
-    	Drive.triggerR();
+    	if(xbc.getBumper(GenericHID.Hand.kRight)!=lastBumperR&&!xbc.getBumper(GenericHID.Hand.kRight)) Drive.bumperRReleased();
+    	if(xbc.getBumper(GenericHID.Hand.kLeft)!=lastBumperL&&!xbc.getBumper(GenericHID.Hand.kLeft)) Drive.bumperLReleased();
+    	if((xbc.getTriggerAxis(GenericHID.Hand.kRight)<.7)!=lastTriggerR&&!(xbc.getTriggerAxis(GenericHID.Hand.kRight)<7)) Drive.triggerRReleased();
+    	if((xbc.getTriggerAxis(GenericHID.Hand.kLeft)<.7)!=lastTriggerL&&!(xbc.getTriggerAxis(GenericHID.Hand.kLeft)<7)) Drive.triggerLReleased();
     	
     	lastA = xbc.getAButton();
     	lastB = xbc.getBButton();
     	lastX = xbc.getXButton();
     	lastY = xbc.getYButton();
+    	lastBumperR = xbc.getBumper(GenericHID.Hand.kRight);
+    	lastBumperL = xbc.getBumper(GenericHID.Hand.kLeft);
+    	lastTriggerR = xbc.getTriggerAxis(GenericHID.Hand.kRight)<.7;
+    	lastTriggerL = xbc.getTriggerAxis(GenericHID.Hand.kLeft)<.7;
     }
 }
 
