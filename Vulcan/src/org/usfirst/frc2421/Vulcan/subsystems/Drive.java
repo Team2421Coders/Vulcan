@@ -99,34 +99,11 @@ public class Drive extends Subsystem {
     	Drive.setRight((yValue-xValue) * .5);
     }
     public static void buttonA(){
-    	/*if(xbc.getAButton())
+    	if(xbc.getAButton())
     	{
-    		Command auto = new AutonomousCommand();
-    		auto.start();
-    	}*/
-    
-//    	double speed = .3;
-//    	boolean isFinished = false;
-//    	while(xValue == 0 && yValue == 0||!isFinished){
-//    	try{
-//    		double c = 0.0025;
-//    		double d = .00075;
-//    		double avgSize = (Robot.vision.getNumberArray("size", Robot.def)[0]+Robot.vision.getNumberArray("size", Robot.def)[1])/2;
-//    		double midpoint = (Robot.vision.getNumberArray("x", Robot.def)[0]+Robot.vision.getNumberArray("x", Robot.def)[1])/2;
-//    		double ds = (320-midpoint)*c*avgSize*d;
-//    		System.out.println(ds);
-//    		Drive.setLeft(speed+ds);
-//    		Drive.setRight(speed-ds);
-//    	}
-//    	catch(Exception ex){
-//    		isFinished = true;
-//    	}
-//    	if(Robot.vision.getNumberArray("size", Robot.def).length>0)
-//    		isFinished = Robot.vision.getNumberArray("size", Robot.def)[0]>100.0;
-//        else
-//        	
-//        	isFinished = true;
-//    	}
+    		Command josh = new JoshCommand();
+    		josh.start();
+    	}
     }
     public static void buttonB(){
     	if(xbc.getAButton())

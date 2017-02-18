@@ -21,6 +21,9 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class AutonomousCommand extends Command {
 	public boolean noBubbles = false;
+	boolean end = false;
+	public Command zach = new ZachCommand();
+	public Command josh = new JoshCommand();
 	private static Timer time = new Timer();
 	private double currentTime = 0;
 	double[] sizeArray;
@@ -62,72 +65,76 @@ public class AutonomousCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	try{
-
-    		sizeArray = Robot.vision.getNumberArray("size", Robot.def);
-    		xArray = Robot.vision.getNumberArray("x", Robot.def);
-    		if(sizeArray.length >= 3){
-    			sum = sizeArray[0] + sizeArray[1] + sizeArray[2];
-    			if(sum < 200){
-	    			xCircum = (angle/180)*(241-38.8*Math.log(sum))*(Math.PI);
-	    			if(xArray[0] < xArray[2]){
-	    				currentTime = time.get();
-	    				while(time.get() < (currentTime + .25)){
-	    					Drive.setLeft(-.5);
-	    					Drive.setRight(.5);    					
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    				currentTime = time.get();
-	    				while(time.get() < currentTime + (xCircum/distConstant)){
-	    					Drive.setLeft(.5);
-	    					Drive.setRight(.5);
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    				currentTime = time.get();
-	    				while(time.get() < (currentTime + .25)){
-	    					Drive.setLeft(.5);
-	    					Drive.setRight(-.5);
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    			}
-	    			else if(xArray[0] > xArray[2]){
-	    				currentTime = time.get();
-	    				while(time.get() < (currentTime + .25)){
-	    					Drive.setLeft(.5);
-	    					Drive.setRight(-.5);    					
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    				currentTime = time.get();
-	    				while(time.get() < currentTime + (xCircum/distConstant)){
-	    					Drive.setLeft(.5);
-	    					Drive.setRight(.5);
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    				currentTime = time.get();
-	    				while(time.get() < (currentTime + .45)){
-	    					Drive.setLeft(-.5);
-	    					Drive.setRight(.5);
-	    				}
-	    				Drive.setLeft(0);
-	    				Drive.setRight(0);
-	    			}
-    			}
-    		}
-    		sizeArray = Robot.vision.getNumberArray("size", Robot.def);
-    		xArray = Robot.vision.getNumberArray("x", Robot.def);
-    		c = 0.005;
-    		d = 0.0005;
-    		avgSize = (sizeArray[0] + sizeArray[1])/2;
-    		midpoint = (xArray[0] + xArray[1])/2;
-    		ds = (320-midpoint)*c*avgSize*d;
-
-    		System.out.println(ds);
-    		Drive.setLeft(speed+ds);
-    		Drive.setRight(speed-ds);
+    		zach.start();
+    		while(zach.isRunning()){}
+    		josh.start();
+    		while(josh.isRunning()){}
+    		end = true;
+//    		sizeArray = Robot.vision.getNumberArray("size", Robot.def);
+//    		xArray = Robot.vision.getNumberArray("x", Robot.def);
+//    		if(sizeArray.length >= 3){
+//    			sum = sizeArray[0] + sizeArray[1] + sizeArray[2];
+//    			if(sum < 200){
+//	    			xCircum = (angle/180)*(241-38.8*Math.log(sum))*(Math.PI);
+//	    			if(xArray[0] < xArray[2]){
+//	    				currentTime = time.get();
+//	    				while(time.get() < (currentTime + .25)){
+//	    					Drive.setLeft(-.5);
+//	    					Drive.setRight(.5);    					
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    				currentTime = time.get();
+//	    				while(time.get() < currentTime + (xCircum/distConstant)){
+//	    					Drive.setLeft(.5);
+//	    					Drive.setRight(.5);
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    				currentTime = time.get();
+//	    				while(time.get() < (currentTime + .25)){
+//	    					Drive.setLeft(.5);
+//	    					Drive.setRight(-.5);
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    			}
+//	    			else if(xArray[0] > xArray[2]){
+//	    				currentTime = time.get();
+//	    				while(time.get() < (currentTime + .25)){
+//	    					Drive.setLeft(.5);
+//	    					Drive.setRight(-.5);    					
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    				currentTime = time.get();
+//	    				while(time.get() < currentTime + (xCircum/distConstant)){
+//	    					Drive.setLeft(.5);
+//	    					Drive.setRight(.5);
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    				currentTime = time.get();
+//	    				while(time.get() < (currentTime + .45)){
+//	    					Drive.setLeft(-.5);
+//	    					Drive.setRight(.5);
+//	    				}
+//	    				Drive.setLeft(0);
+//	    				Drive.setRight(0);
+//	    			}
+//    			}
+//    		}
+//    		sizeArray = Robot.vision.getNumberArray("size", Robot.def);
+//    		xArray = Robot.vision.getNumberArray("x", Robot.def);
+//    		c = 0.005;
+//    		d = 0.0005;
+//    		avgSize = (sizeArray[0] + sizeArray[1])/2;
+//    		midpoint = (xArray[0] + xArray[1])/2;
+//    		ds = (320-midpoint)*c*avgSize*d;
+//
+//    		System.out.println(ds);
+//    		Drive.setLeft(speed+ds);
+//    		Drive.setRight(speed-ds);
     	}
     	catch(Exception ex){
     		noBubbles = true;
@@ -136,10 +143,11 @@ public class AutonomousCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.vision.getNumberArray("size", Robot.def).length>0)
-    		return Robot.vision.getNumberArray("size", Robot.def)[0]>100.0;
-        else
-        	return noBubbles;
+    	return end;
+//    	if(Robot.vision.getNumberArray("size", Robot.def).length>0)
+//    		return Robot.vision.getNumberArray("size", Robot.def)[0]>100.0;
+//        else
+//        	return noBubbles;
     }
 
     // Called once after isFinished returns true
