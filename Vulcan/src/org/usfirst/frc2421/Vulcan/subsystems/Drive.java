@@ -124,8 +124,24 @@ public class Drive extends Subsystem {
     
     //BUTTON PRESSED
     public static void buttonAPressed(){
-    	Command josh = new JoshCommand();
-		josh.start();
+    	AutonomousCommand.noBubbles = false;
+    	while(!AutonomousCommand.noBubbles||Robot.vision.getNumberArray("size", Robot.def)[0]>100.0){
+    		try{
+        		AutonomousCommand.updateVisionArrays();
+    			if(AutonomousCommand.sizeArray.length>1 && AutonomousCommand.sizeArray[0]<95.0){
+    				//The bit with the Josh
+    				AutonomousCommand.josh();
+    			}
+    			else
+    			{
+    				Drive.setLeft(0);
+    				Drive.setRight(0);
+    			}
+        	}
+        	catch(Exception ex){
+        		AutonomousCommand.noBubbles = true;
+        	}
+    	}//lol wtf
     }
     
     public static void buttonBPressed(){

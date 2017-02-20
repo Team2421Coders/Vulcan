@@ -75,8 +75,10 @@ public class Robot extends IterativeRobot {
 		NetworkTable.setServerMode();
 		vision =  NetworkTable.getTable("VulcanVision");
 		
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(640, 480);
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		camera2.setResolution(640, 480);
 		//CvSink cvSink = CameraServer.getInstance().getVideo();
 		
 		/*
