@@ -96,13 +96,11 @@ public class Drive extends Subsystem {
         	xValue = 0;
         }
     	if(xbc.getY(GenericHID.Hand.kLeft) < -deadzone || xbc.getY(GenericHID.Hand.kLeft) > deadzone){
-        	yValue = reversed * xbc.getY(GenericHID.Hand.kLeft);
+        	yValue = -reversed * xbc.getY(GenericHID.Hand.kLeft);
         }else{
         	yValue = 0;
         }
     	Drive.setLeft((yValue+xValue) * .5);
-    	System.out.println((yValue + xValue) * .5);
-    	System.out.println((yValue - xValue) * .5);
     	Drive.setRight((yValue-xValue) * .5);
     }  
     //BUTTON HELD

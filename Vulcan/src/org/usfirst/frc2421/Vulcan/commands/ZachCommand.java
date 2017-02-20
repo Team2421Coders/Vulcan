@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class ZachCommand extends Command {
 	public boolean noBubbles = false;
-	private static Timer time = new Timer();
+	private static Timer time = AutonomousCommand.time;
 	private double currentTime = 0;
 	double[] sizeArray;
 	double[] xArray;
@@ -55,8 +55,7 @@ public class ZachCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time.reset();
-    	time.start();
+    	System.out.println("Hey we Started");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -126,8 +125,10 @@ public class ZachCommand extends Command {
     protected boolean isFinished() {
     	if(sizeArray.length >= 3)
     		return false;
-    	else
+    	else{
+    		System.out.println("zach is over");
     		return true;
+    	}
 //    	if(Robot.vision.getNumberArray("size", Robot.def).length>0)
 //    		return Robot.vision.getNumberArray("size", Robot.def)[0]>100.0;
 //        else

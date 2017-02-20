@@ -22,11 +22,8 @@ import edu.wpi.first.wpilibj.Timer;
 public class JoshCommand extends Command {
 	public boolean noBubbles = false;
 	public boolean finished = false;
-	private static Timer time = new Timer();
-	private double currentTime = 0;
 	double[] sizeArray;
 	double[] xArray;
-	private double angle = 45;
 	double c;
 	double d;
 	double avgSize;
@@ -56,8 +53,7 @@ public class JoshCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time.reset();
-    	time.start();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -69,7 +65,7 @@ public class JoshCommand extends Command {
     		d = 0.0005;
     		avgSize = (sizeArray[0] + sizeArray[1])/2;
     		midpoint = (xArray[0] + xArray[1])/2;
-    		ds = (320-midpoint)*c*avgSize*d;
+    		ds = (midpoint-320)*c*avgSize*d;
 
     		System.out.println(ds);
     		Drive.setLeft(speed+ds);
@@ -84,8 +80,10 @@ public class JoshCommand extends Command {
     protected boolean isFinished() {
     	if(Robot.vision.getNumberArray("size", Robot.def).length>0)
     		return Robot.vision.getNumberArray("size", Robot.def)[0]>100.0;
-        else
+        else{
+        	System.out.println("Josh is Done");
         	return noBubbles;
+        }
     }
 
     // Called once after isFinished returns true

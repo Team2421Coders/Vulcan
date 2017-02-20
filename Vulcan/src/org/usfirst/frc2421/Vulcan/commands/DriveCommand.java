@@ -51,7 +51,6 @@ public class DriveCommand extends Command {
     protected void execute() {
     	Drive.joysticks();
     	Drive.buttons();
-    	System.out.println("execute");
     }
 
     // Make this return true when this Command no longer needs to run execute()
