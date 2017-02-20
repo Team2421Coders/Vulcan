@@ -20,16 +20,16 @@ import edu.wpi.first.wpilibj.Timer;
  *
  */
 public class AutonomousCommand extends Command {
-	public boolean noBubbles = false;
+	public static boolean noBubbles = false;
 	boolean end = false;
 	public Command zach = new ZachCommand();
 	public Command josh = new JoshCommand();
 	public static Timer time = new Timer();
 	private static double currentTime = 0;
-	static double[] sizeArray;
-	static double[] xArray;
+	public static double[] sizeArray;
+	public static double[] xArray;
 	static double avgLength = 0;
-	private static double angle = 45;
+	static double angle = 45;
 	static int counter = 0;
 	static int lengthSum = 0;
 	static double c;
@@ -69,7 +69,7 @@ public class AutonomousCommand extends Command {
     protected void execute() {
     	try{
     		updateVisionArrays();
-			if(sizeArray.length>1 && sizeArray[0]<95.0){
+			if(sizeArray.length>1 && sizeArray[0]<120.0){
 				josh();
 			}
 			else
@@ -87,7 +87,7 @@ public class AutonomousCommand extends Command {
     protected boolean isFinished() {
     	System.out.println("FINISHED");
     	if(sizeArray.length>0)
-    		return sizeArray[0]>95.0;
+    		return sizeArray[0]>120.0;
         else
         	return noBubbles;
     }
@@ -129,7 +129,7 @@ public class AutonomousCommand extends Command {
     public static void zach(){
     	updateVisionArrays();
     	avgLength = arrayAvgLength();
-		if(sizeArray.length >= 3){
+		if(sizeArray.length >= 3 && avgLength > 2.5){
 			sum = sizeArray[0] + sizeArray[1] + sizeArray[2];
 			if(sum < 200){
     			xCircum = (angle/180)*(241-38.8*Math.log(sum))*(Math.PI);
