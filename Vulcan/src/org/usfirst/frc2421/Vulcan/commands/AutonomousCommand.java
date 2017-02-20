@@ -100,13 +100,13 @@ public class AutonomousCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     }
-    
-    private static void updateVisionArrays(){
+    public static void updateVisionArrays(){
     	sizeArray = Robot.vision.getNumberArray("size", Robot.def);
 		xArray = Robot.vision.getNumberArray("x", Robot.def);
     }
-    private static double arrayAvgLength(){
+    public static double arrayAvgLength(){
     	currentTime = time.get();
     	while(time.get() < (currentTime + 2)){
     		updateVisionArrays();
@@ -115,7 +115,7 @@ public class AutonomousCommand extends Command {
     	}
     	return (lengthSum/counter);
     }
-    private static void josh(){
+    public static void josh(){
 		c = 0.0075;
 		d = 0.0006;
 		System.out.println(ds);
@@ -126,7 +126,7 @@ public class AutonomousCommand extends Command {
 		Drive.setRight(speed-ds);
     }
     
-    private static void zach(){
+    public static void zach(){
     	updateVisionArrays();
     	avgLength = arrayAvgLength();
 		if(sizeArray.length >= 3){
