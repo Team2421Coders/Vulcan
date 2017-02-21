@@ -129,7 +129,8 @@ public class AutonomousCommand extends Command {
     public static void zach(){
     	updateVisionArrays();
     	avgLength = arrayAvgLength();
-		if(sizeArray.length >= 3 && avgLength > 2.5){
+    	System.out.println(avgLength);
+		if(avgLength > 2.5){
 			sum = sizeArray[0] + sizeArray[1] + sizeArray[2];
 			if(sum < 200){
     			xCircum = (angle/180)*(241-38.8*Math.log(sum))*(Math.PI);
