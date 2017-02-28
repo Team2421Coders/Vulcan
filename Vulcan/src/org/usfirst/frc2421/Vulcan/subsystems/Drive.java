@@ -122,10 +122,23 @@ public class Drive extends Subsystem {
     		
     }
     
-    //BUTTON PRESSED
+    //BUTTON PRESSEDy
     public static void buttonAPressed(){
+    	Command gear = new GearCommand();
+    	gear.start();
+    }
+    
+    public static void buttonBPressed(){
+    	
+    }
+    
+    public static void buttonXPressed(){
+    	
+    }
+    
+    public static void buttonYPressed(){
     	Command auto = new AutonomousCommand();
-    	//auto.start();
+    	auto.start();
 //    	AutonomousCommand.noBubbles = false;
 //    	while(!AutonomousCommand.noBubbles){
 //        		AutonomousCommand.updateVisionArrays();
@@ -141,19 +154,6 @@ public class Drive extends Subsystem {
 //    			}
 //        	}
     	}
-    
-    public static void buttonBPressed(){
-    	
-    }
-    
-    public static void buttonXPressed(){
-    	
-    }
-    
-    public static void buttonYPressed(){
-    	Command gear = new GearCommand();
-    	gear.start();
-    }
     
     //BUTTON RELEASED
     public static void buttonAReleased(){
