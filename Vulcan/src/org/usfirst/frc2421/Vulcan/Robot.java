@@ -78,6 +78,8 @@ public class Robot extends IterativeRobot {
 		
 		RobotMap.flashlight.set(Relay.Value.kForward);
 		
+		
+		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(640, 480);
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);

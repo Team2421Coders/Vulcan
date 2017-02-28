@@ -93,7 +93,7 @@ public class RobotMap {
     	}
     	
     	flashlight = new Relay(0);
-        driveDriveSystem.setSafetyEnabled(true);
+        driveDriveSystem.setSafetyEnabled(false);
         driveDriveSystem.setExpiration(0.1);
         driveDriveSystem.setSensitivity(0.5);
         driveDriveSystem.setMaxOutput(1.0);
