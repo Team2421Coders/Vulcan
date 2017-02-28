@@ -169,7 +169,6 @@ public class Drive extends Subsystem {
     }
     
     public static void buttonYReleased(){
-    	Gear.gearEnd();
     }
     
     

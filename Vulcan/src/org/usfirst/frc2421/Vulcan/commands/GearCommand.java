@@ -40,19 +40,21 @@ public class GearCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	ignore = true;
     	Gear.gearStart();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ignore = true;
-    	while(RobotMap.limit1.get()){}
+    	System.out.println("limit switch " +  RobotMap.limit1.get());
+    	if(RobotMap.limit1.get()){
     	ignore = false;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished(){
-        return RobotMap.limit1.get()&&!ignore;
+        return !RobotMap.limit1.get()&&!ignore;
     }
 
     // Called once after isFinished returns true
