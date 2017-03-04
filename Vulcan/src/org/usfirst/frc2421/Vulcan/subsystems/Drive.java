@@ -48,6 +48,7 @@ public class Drive extends Subsystem {
     public static XboxController xbc = RobotMap.xbc;
     private static double xValue;
     private static double yValue;
+    private static double direction = 1;
     private static double deadzone = .4;
     private static boolean toggleClimb = false;
     private boolean toggleGear = false;
@@ -81,12 +82,12 @@ public class Drive extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public static void setLeft(double x){
-    	driveLeft1.set(x*speedMult);
-    	driveLeft2.set(x*speedMult);
+    	driveLeft1.set(x*speedMult*direction);
+    	driveLeft2.set(x*speedMult*direction);
     }
     public static void setRight(double x){
-    	driveRight1.set(-x*speedMult);
-    	driveRight2.set(-x*speedMult);
+    	driveRight1.set(-x*speedMult*direction);
+    	driveRight2.set(-x*speedMult*direction);
     }
     //CONTROLLER STUFF
     public static void joysticks(){
@@ -179,13 +180,13 @@ public class Drive extends Subsystem {
     	
     }
     public static void bumperRPressed(){
-    	
+    	direction *= -1;
     }
     public static void bumperLPressed(){
     	
     }
     
-public static void triggerRReleased(){
+    public static void triggerRReleased(){
     	
     }
     public static void triggerLReleased(){

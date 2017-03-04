@@ -29,9 +29,11 @@ public class AutonomousCommand extends Command {
 	public static Timer time = new Timer();
 	private static double currentTime = 0;
 	public static double[] sizeArray;
-	//public static double[] sizeFinalArray;
-	//public static double[] yArray;
-	//public static double[] xFinalArray;
+	public static double[] sizeL3Array;
+	public static double[] sizeL2Array;
+	public static double[] xL3Array;
+	public static double[] xL2Array;
+	public static double[] yArray;
 	public static double[] xArray;
 	static double avgLength = 0;
 	static int arrayCounter = 0;
@@ -118,15 +120,14 @@ public class AutonomousCommand extends Command {
     public static void updateVisionArrays(){
     	sizeArray = Robot.vision.getNumberArray("size", Robot.def);
 		xArray = Robot.vision.getNumberArray("x", Robot.def);
-		//yArray = Robot.vision.getNumberArray("y", Robot.def);
-		/*for(int i = 0; i < sizeArray.length; i++){
-			if(yArray[i] < 400 && yArray[i] > 80 && xArray[i] > 100 && xArray[i] < 500){
-				sizenalArray[arrayCounter] = sizeArray[i];
-				xFinalArray[arrayCounter] = xArray[i];
-				arrayCounter++;
-				
-			}
-		}*/
+		if(sizeArray.length == 3){
+			sizeL3Array = sizeArray;
+			xL3Array = xArray;
+		}
+		if(sizeArray.length == 2){
+			sizeL2Array = sizeArray;
+			xL2Array = xArray;
+		}
     }
     public static double arrayAvgLength(){
     	currentTime = time.get();
@@ -142,8 +143,8 @@ public class AutonomousCommand extends Command {
 		c = 0.015;
 		d = 0.0008;
 		System.out.println(ds);
-		avgSize = (sizeArray[0] + sizeArray[1])/2;
-		midpoint = (xArray[0] + xArray[1])/2;
+		avgSize = (sizeL2Array[0] + sizeL2Array[1])/2;
+		midpoint = (xL2Array[0] + xL2Array[1])/2;
 		ds = (midpoint-320)*c*avgSize*d;
 		Drive.setLeft(speed+ds);
 		Drive.setRight(speed-ds);
@@ -155,12 +156,12 @@ public class AutonomousCommand extends Command {
     	avgLength = arrayAvgLength();
     	System.out.println(avgLength);
 		if(avgLength > 2.3){
-			sum = sizeArray[0] + sizeArray[1] + sizeArray[2];
+			sum = sizeL3Array[0] + sizeL3Array[1] + sizeL3Array[2];
 			if(sum < 200){
     			xCircum = (angle/180)*(215-38.8*Math.log(sum))*(Math.PI);
     			
     			//right
-    			if(xArray[0] < xArray[2]){
+    			if(xL3Array[0] < xL3Array[2]){
     				System.out.println("right");
     				currentTime = time.get();
     				while(time.get() < (currentTime + .45)){
@@ -185,7 +186,7 @@ public class AutonomousCommand extends Command {
     				Drive.setRight(0);
     			}
     			//left
-    			else if(xArray[0] > xArray[2]){
+    			else if(xL3Array[0] > xL3Array[2]){
     				System.out.println("left");
     				currentTime = time.get();
     				while(time.get() < (currentTime + .45)){
