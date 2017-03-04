@@ -183,7 +183,7 @@ public class Drive extends Subsystem {
     	direction *= -1;
     }
     public static void bumperLPressed(){
-    	
+    	Gear.gearEnd();
     }
     
     public static void triggerRReleased(){

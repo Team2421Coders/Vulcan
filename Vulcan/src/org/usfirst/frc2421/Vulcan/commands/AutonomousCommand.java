@@ -41,7 +41,7 @@ public class AutonomousCommand extends Command {
 	static double avgLength = 0;
 	static int middleCounter = 0;
 	static int arrayCounter = 0;
-	static double angle = 45;
+	static double angle = 30;
 	static double counter = 0;
 	static double lengthSum = 0;
 	static double c;
@@ -101,7 +101,6 @@ public class AutonomousCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//System.out.println("FINISHED");
-    	updateVisionArrays();
     	if(sizeMiddleArray.length>0)
     		return sizeMiddleArray[0]>targetSize;
         else
@@ -157,19 +156,19 @@ public class AutonomousCommand extends Command {
     	sizeArray = Robot.vision.getNumberArray("size", Robot.def);
 		xArray = Robot.vision.getNumberArray("x", Robot.def);
 		yArray = Robot.vision.getNumberArray("y", Robot.def);
-		System.out.println("y array length: " + yArray.length);
-		System.out.println("size array length: " + sizeArray.length);
+		//System.out.println("y array length: " + yArray.length);
+		//System.out.println("size array length: " + sizeArray.length);
 		for(int i = 0; i < yArray.length; i++){
-			System.out.println(i);
-			if(yArray[i] > 190 && yArray[i] < 290){
+			//System.out.println(i);
+			if(yArray[i] > 140 && yArray[i] < 340){
 				System.out.println(yArray[i] + " " + i + " " + yArray.length);
 				arrayCounter += 1;
 			}
 		}
 		sizeMiddleArray = new double[arrayCounter];
 		xMiddleArray = new double[arrayCounter];
-		for(int a = 0; a < sizeArray.length; a++){
-			if(yArray[a] > 190 && yArray[a] < 290){
+		for(int a = 0; a < yArray.length; a++){//experimental
+			if(yArray[a] > 140 && yArray[a] < 340){
 				sizeMiddleArray[middleCounter] = sizeArray[a];
 				xMiddleArray[middleCounter] = xArray[a];
 				middleCounter++;
@@ -197,7 +196,7 @@ public class AutonomousCommand extends Command {
     	//System.out.println("josh");
 		c = 0.015;
 		d = 0.0008;
-		//System.out.println(ds);
+		System.out.println(ds);
 		avgSize = (sizeL2Array[0] + sizeL2Array[1])/2;
 		midpoint = (xL2Array[0] + xL2Array[1])/2;
 		ds = (midpoint-320)*c*avgSize*d;
