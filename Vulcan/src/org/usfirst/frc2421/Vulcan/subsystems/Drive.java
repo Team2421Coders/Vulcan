@@ -92,12 +92,12 @@ public class Drive extends Subsystem {
     //CONTROLLER STUFF
     public static void joysticks(){
     	if(xbc.getX(GenericHID.Hand.kRight) < -deadzone || xbc.getX(GenericHID.Hand.kRight) > deadzone){
-        	xValue = xbc.getX(GenericHID.Hand.kRight) * .75;
+        	xValue = (xbc.getX(GenericHID.Hand.kRight) - deadzone*Math.signum(xbc.getX(GenericHID.Hand.kRight)))* 1/(1-deadzone) * .75;
         }else{
         	xValue = 0;
         }
     	if(xbc.getY(GenericHID.Hand.kLeft) < -deadzone || xbc.getY(GenericHID.Hand.kLeft) > deadzone){
-        	yValue = reversed * xbc.getY(GenericHID.Hand.kLeft);
+        	yValue = (xbc.getY(GenericHID.Hand.kLeft) - deadzone*Math.signum(xbc.getY(GenericHID.Hand.kLeft))) * 1/(1-deadzone);
         }else{
         	yValue = 0;
         }
@@ -111,7 +111,7 @@ public class Drive extends Subsystem {
     
     public static void buttonBHeld(){
     		Climb.climbStart();
-    		System.out.println("B");
+    		//System.out.println("B");
     }
     
     public static void buttonXHeld(){
@@ -138,8 +138,8 @@ public class Drive extends Subsystem {
     }
     
     public static void buttonYPressed(){
-    	Command auto = new AutonomousCommand();
-    	auto.start();
+//    	Command auto = new AutonomousCommand();
+//    	auto.start();
 //    	AutonomousCommand.noBubbles = false;
 //    	while(!AutonomousCommand.noBubbles){
 //        		AutonomousCommand.updateVisionArrays();

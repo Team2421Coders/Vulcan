@@ -58,7 +58,7 @@ public class Climb extends Subsystem {
     public static void climbDown(){
     	mult = -1;
     	climb1.set(mult);
-    	System.out.println("down");
+    	//System.out.println("down");
     }
 }
 

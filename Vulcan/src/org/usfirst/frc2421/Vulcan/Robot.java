@@ -14,6 +14,7 @@ package org.usfirst.frc2421.Vulcan;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -81,9 +82,15 @@ public class Robot extends IterativeRobot {
 		
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-		camera.setResolution(640, 480);
+		System.out.println("camera 0 set mode " + camera.setVideoMode(PixelFormat.kMJPEG, 320, 240, 30));
+		
+		//camera.setFPS(8);
+		//camera.setResolution(640, 480);
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setResolution(640, 480);
+		//camera2.setVideoMode(PixelFormat.kMJPEG, 320, 240, 8);
+		//camera2.setResolution(640, 480);
+		
+		//camera.setFPS(30);
 		//CvSink cvSink = CameraServer.getInstance().getVideo();
 		
 		/*
